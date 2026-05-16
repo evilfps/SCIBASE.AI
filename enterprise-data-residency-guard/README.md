@@ -30,4 +30,4 @@ npm run demo
 - `data/sample-residency-input.json` - synthetic tenants, destinations, and records.
 - `test/data-residency-guard.test.js` - coverage for decisions, dashboard metrics, digest stability, and manifest output.
 - `docs/requirement-map.md` - issue #19 acceptance mapping.
-- `docs/demo.svg` and `docs/demo.gif` - short visual proof artifacts for the demo run.
+- `docs/demo.svg`, `docs/demo.gif`, and `docs/demo.mp4` - short visual proof artifacts for the demo run.
