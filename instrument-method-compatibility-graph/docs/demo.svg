@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="960" height="540" viewBox="0 0 960 540" role="img" aria-labelledby="title desc">
+  <title id="title">Instrument method compatibility demo</title>
+  <desc id="desc">Terminal-style demo output for the instrument method compatibility graph.</desc>
+  <rect width="960" height="540" fill="#111827"/>
+  <rect x="56" y="54" width="848" height="432" rx="8" fill="#f9fafb"/>
+  <rect x="56" y="54" width="848" height="48" rx="8" fill="#1f2937"/>
+  <circle cx="86" cy="78" r="7" fill="#ef4444"/>
+  <circle cx="110" cy="78" r="7" fill="#f59e0b"/>
+  <circle cx="134" cy="78" r="7" fill="#10b981"/>
+  <text x="88" y="138" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="23" fill="#111827">Instrument Method Compatibility</text>
+  <text x="88" y="178" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="18" fill="#111827">Neuroimmune Knowledge Map: blocked (55/100)</text>
+  <text x="88" y="214" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="18" fill="#111827">Edges ready/review: 1/1</text>
+  <text x="88" y="250" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="18" fill="#111827">Findings high/medium/low: 1/3/0</text>
+  <text x="88" y="286" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="18" fill="#111827">Manifest: 4e5e12a454a2e68a</text>
+  <text x="88" y="336" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="15" fill="#111827">Curator actions:</text>
+  <text x="88" y="370" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="13" fill="#b91c1c">- high method_deprecated: Pick a supported method or add curator approval for legacy use.</text>
+  <text x="88" y="402" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="13" fill="#92400e">- medium calibration_out_of_window: Attach fresh calibration evidence before using this edge in recommendations.</text>
+  <text x="88" y="434" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="13" fill="#92400e">- medium compatibility_evidence_weak: Add validation evidence before surfacing the relationship to researchers.</text>
+  <text x="88" y="466" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="13" fill="#92400e">- medium instrument_method_not_listed: Confirm the instrument-method edge or choose a supported instrument.</text>
+</svg>

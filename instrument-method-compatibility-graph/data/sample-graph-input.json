@@ -1,0 +1,89 @@
+{
+  "generatedAt": "2026-05-16T17:10:00Z",
+  "project": {
+    "id": "kg-neuroimmune-221",
+    "title": "Neuroimmune Knowledge Map",
+    "domain": "neuroscience"
+  },
+  "instruments": [
+    {
+      "id": "inst-confocal-7",
+      "name": "Confocal Microscope 7",
+      "modalities": ["imaging"],
+      "supportedMethodIds": ["method-cell-segmentation", "method-colocalization"],
+      "calibrationDate": "2026-04-22T00:00:00Z"
+    },
+    {
+      "id": "inst-flow-alpha",
+      "name": "Flow Cytometer Alpha",
+      "modalities": ["single-cell"],
+      "supportedMethodIds": ["method-cell-count"],
+      "calibrationDate": "2025-11-15T00:00:00Z"
+    }
+  ],
+  "methods": [
+    {
+      "id": "method-cell-segmentation",
+      "name": "Cell Segmentation",
+      "status": "active",
+      "requiredModalities": ["imaging"],
+      "acceptedOutputs": ["ome-tiff", "tiff"],
+      "maxResolutionMicrons": 0.8,
+      "maxCalibrationAgeDays": 60
+    },
+    {
+      "id": "method-legacy-clustering",
+      "name": "Legacy Clustering",
+      "status": "deprecated",
+      "requiredModalities": ["single-cell"],
+      "acceptedOutputs": ["fcs"],
+      "maxCalibrationAgeDays": 120
+    }
+  ],
+  "datasets": [
+    {
+      "id": "data-glia-images",
+      "name": "Glia marker image stack",
+      "modality": "imaging",
+      "format": "ome-tiff",
+      "resolutionMicrons": 0.5
+    },
+    {
+      "id": "data-cytokine-fcs",
+      "name": "Cytokine panel FCS",
+      "modality": "single-cell",
+      "format": "fcs",
+      "resolutionMicrons": 1.2
+    }
+  ],
+  "experiments": [
+    {
+      "id": "exp-segmentation-01",
+      "instrumentId": "inst-confocal-7",
+      "methodId": "method-cell-segmentation",
+      "datasetId": "data-glia-images",
+      "evidence": [
+        {
+          "id": "ev-segmentation-validation",
+          "type": "validation",
+          "status": "ready",
+          "quality": 0.91
+        }
+      ]
+    },
+    {
+      "id": "exp-legacy-flow-02",
+      "instrumentId": "inst-flow-alpha",
+      "methodId": "method-legacy-clustering",
+      "datasetId": "data-cytokine-fcs",
+      "evidence": [
+        {
+          "id": "ev-flow-draft",
+          "type": "notebook",
+          "status": "draft",
+          "quality": 0.44
+        }
+      ]
+    }
+  ]
+}
