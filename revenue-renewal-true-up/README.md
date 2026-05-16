@@ -29,4 +29,4 @@ npm run demo
 - `test/revenue-renewal-true-up.test.js` covers decisions, metrics, events, and digest stability.
 - `scripts/demo.js` prints a reviewer-friendly renewal report.
 - `docs/requirement-map.md` maps the slice to issue #20.
-- `docs/demo.svg` and `docs/demo.gif` show the dashboard flow.
+- `docs/demo.svg`, `docs/demo.gif`, and `docs/demo.mp4` show the dashboard flow.
