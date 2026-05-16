@@ -1,0 +1,252 @@
+{
+  "generatedAt": "2026-05-16T10:55:00.000Z",
+  "policy": {
+    "signingKey": "demo-signing-key",
+    "verifiedEvidenceMinimum": 1
+  },
+  "accounts": [
+    {
+      "id": "acct-ada-main",
+      "name": "Ada Rao",
+      "email": "ada.rao@northbridge.edu",
+      "orcid": "0000-0002-1825-0097",
+      "institution": "Northbridge University",
+      "samlSubject": "northbridge.edu:ada.rao",
+      "github": "adarao-lab",
+      "mfaEnabled": true,
+      "privacyMode": "public",
+      "linkedAccounts": [
+        {
+          "provider": "google",
+          "subject": "ada.rao@northbridge.edu",
+          "verified": true
+        }
+      ],
+      "profile": {
+        "field": "Computational Biology",
+        "bio": "Works on reproducible cell atlas pipelines.",
+        "keywords": ["single-cell", "reproducibility", "atlas"],
+        "affiliations": ["Northbridge Bioinformatics Lab"],
+        "grants": ["NB-2025-CELL-42"],
+        "publications": ["10.5555/cell-atlas-2025"],
+        "activity": ["project-created:proj-cell-atlas", "review-completed:rev-884"]
+      },
+      "reputation": {
+        "downloads": 1280,
+        "forks": 34,
+        "endorsements": 11,
+        "reproducibilityScore": 96
+      }
+    },
+    {
+      "id": "acct-ada-old",
+      "name": "Ada R.",
+      "email": "ada.old@northbridge.edu",
+      "institution": "Northbridge University",
+      "mfaEnabled": true,
+      "privacyMode": "private",
+      "linkedAccounts": [
+        {
+          "provider": "orcid",
+          "subject": "0000-0002-1825-0097",
+          "verified": true
+        },
+        {
+          "provider": "github",
+          "subject": "adarao-archive",
+          "verified": true
+        }
+      ],
+      "profile": {
+        "field": "Computational Biology",
+        "bio": "Legacy account imported from an old workspace.",
+        "keywords": ["atlas"],
+        "affiliations": ["Northbridge Bioinformatics Lab"],
+        "grants": ["NB-2024-MIGRATE-7"],
+        "publications": ["10.5555/legacy-atlas"],
+        "activity": ["dataset-uploaded:ds-443"]
+      },
+      "reputation": {
+        "downloads": 410,
+        "forks": 8,
+        "endorsements": 3,
+        "reproducibilityScore": 89
+      }
+    },
+    {
+      "id": "acct-mira",
+      "name": "Mira Chen",
+      "email": "mira.chen@westlake.edu",
+      "orcid": "0000-0003-1111-2222",
+      "institution": "Westlake Institute",
+      "samlSubject": "westlake.edu:mira.chen",
+      "github": "mirachen",
+      "mfaEnabled": false,
+      "privacyMode": "private",
+      "linkedAccounts": [
+        {
+          "provider": "github",
+          "subject": "shared-lab-service",
+          "verified": true
+        }
+      ],
+      "profile": {
+        "field": "Neuroscience",
+        "bio": "Reviews imaging datasets.",
+        "keywords": ["imaging", "reviews"],
+        "affiliations": ["Westlake Imaging Core"],
+        "grants": ["WL-IRB-9"],
+        "publications": ["10.5555/westlake-review"],
+        "activity": ["review-requested:proj-cell-atlas"]
+      },
+      "reputation": {
+        "downloads": 140,
+        "forks": 2,
+        "endorsements": 5,
+        "reproducibilityScore": 72
+      }
+    },
+    {
+      "id": "acct-service",
+      "name": "Shared Lab Service",
+      "email": "service@northbridge.edu",
+      "institution": "Northbridge University",
+      "mfaEnabled": true,
+      "privacyMode": "private",
+      "linkedAccounts": [
+        {
+          "provider": "github",
+          "subject": "shared-lab-service",
+          "verified": true
+        }
+      ],
+      "profile": {
+        "field": "Automation",
+        "bio": "Machine account for legacy imports.",
+        "keywords": ["automation"],
+        "affiliations": ["Northbridge Platform Team"],
+        "grants": [],
+        "publications": [],
+        "activity": []
+      },
+      "reputation": {
+        "downloads": 0,
+        "forks": 0,
+        "endorsements": 0,
+        "reproducibilityScore": 0
+      }
+    }
+  ],
+  "projects": [
+    {
+      "id": "proj-cell-atlas",
+      "title": "Cell Atlas Reproducibility Pack",
+      "visibility": "institutional-only",
+      "ownerId": "acct-ada-old",
+      "roles": {
+        "acct-ada-main": "admin",
+        "acct-mira": "reviewer"
+      },
+      "objectGrants": [
+        {
+          "objectId": "dataset-raw-443",
+          "type": "dataset",
+          "accountId": "acct-ada-old",
+          "permissions": ["read", "download"]
+        },
+        {
+          "objectId": "notebook-qc-91",
+          "type": "notebook",
+          "accountId": "acct-ada-main",
+          "permissions": ["read", "edit"]
+        }
+      ]
+    },
+    {
+      "id": "proj-imaging-review",
+      "title": "Imaging Review Board",
+      "visibility": "invitation-only",
+      "ownerId": "acct-mira",
+      "roles": {
+        "acct-ada-main": "viewer"
+      },
+      "objectGrants": [
+        {
+          "objectId": "review-note-17",
+          "type": "document",
+          "accountId": "acct-mira",
+          "permissions": ["read", "comment"]
+        }
+      ]
+    }
+  ],
+  "mergeRequests": [
+    {
+      "id": "merge-ada-001",
+      "primaryAccountId": "acct-ada-main",
+      "duplicateAccountIds": ["acct-ada-old"],
+      "requestedBy": "acct-ada-main",
+      "reason": "same_researcher_legacy_import",
+      "evidence": [
+        {
+          "provider": "orcid",
+          "subject": "0000-0002-1825-0097",
+          "verified": true,
+          "confidence": 0.99
+        },
+        {
+          "provider": "email",
+          "subject": "ada.rao@northbridge.edu",
+          "verified": true,
+          "confidence": 0.95
+        }
+      ]
+    },
+    {
+      "id": "merge-mira-service-002",
+      "primaryAccountId": "acct-mira",
+      "duplicateAccountIds": ["acct-service"],
+      "requestedBy": "acct-mira",
+      "reason": "shared_github_cleanup",
+      "evidence": [
+        {
+          "provider": "github",
+          "subject": "shared-lab-service",
+          "verified": true,
+          "confidence": 0.71
+        }
+      ]
+    },
+    {
+      "id": "merge-missing-003",
+      "primaryAccountId": "acct-ada-main",
+      "duplicateAccountIds": ["acct-ghost"],
+      "requestedBy": "acct-ada-main",
+      "reason": "manual_cleanup",
+      "evidence": []
+    }
+  ],
+  "profileExports": [
+    {
+      "id": "export-ada-full",
+      "accountId": "acct-ada-main",
+      "requestedBy": "acct-ada-main",
+      "includePrivate": true,
+      "format": "json"
+    },
+    {
+      "id": "export-mira-third-party",
+      "accountId": "acct-mira",
+      "requestedBy": "acct-ada-main",
+      "includePrivate": true,
+      "format": "json"
+    },
+    {
+      "id": "export-service-public",
+      "accountId": "acct-service",
+      "requestedBy": "acct-service",
+      "includePrivate": false,
+      "format": "json"
+    }
+  ]
+}

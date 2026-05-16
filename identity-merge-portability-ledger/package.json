@@ -1,0 +1,17 @@
+{
+  "name": "identity-merge-portability-ledger",
+  "version": "1.0.0",
+  "description": "Identity merge and profile portability guard for research workspaces.",
+  "type": "module",
+  "scripts": {
+    "check": "node --check src/identity-merge-portability-ledger.js && node --check scripts/demo.js && node --check test/identity-merge-portability-ledger.test.js",
+    "test": "node --test test/*.test.js",
+    "demo": "node scripts/demo.js"
+  },
+  "keywords": [
+    "identity",
+    "profile-portability",
+    "workspace-governance"
+  ],
+  "license": "MIT"
+}
