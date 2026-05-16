@@ -52,6 +52,8 @@
       "region": "EU",
       "adequacy": true,
       "hasDpa": true,
+      "hasScc": true,
+      "sccEvidenceDigest": "scc-eu-zenodo-2026",
       "supportsRestrictedAccess": true
     },
     {
@@ -61,6 +63,8 @@
       "region": "US",
       "adequacy": true,
       "hasDpa": true,
+      "hasScc": true,
+      "sccEvidenceDigest": "scc-us-pubmed-2026",
       "supportsRestrictedAccess": true
     },
     {
@@ -70,6 +74,8 @@
       "region": "US",
       "adequacy": true,
       "hasDpa": false,
+      "hasScc": false,
+      "sccEvidenceDigest": null,
       "supportsRestrictedAccess": false
     },
     {
@@ -79,6 +85,8 @@
       "region": "APAC",
       "adequacy": false,
       "hasDpa": false,
+      "hasScc": false,
+      "sccEvidenceDigest": null,
       "supportsRestrictedAccess": true
     },
     {
@@ -88,6 +96,8 @@
       "region": "UK",
       "adequacy": true,
       "hasDpa": true,
+      "hasScc": true,
+      "sccEvidenceDigest": "scc-uk-dspace-2026",
       "supportsRestrictedAccess": true
     }
   ],

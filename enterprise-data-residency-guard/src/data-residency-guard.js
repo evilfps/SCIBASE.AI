@@ -6,6 +6,15 @@ const DECISION_RANK = {
   blocked: 2
 };
 
+const SEVERITY_RANK = {
+  info: 0,
+  medium: 1,
+  high: 2,
+  critical: 3
+};
+
+const DEFAULT_WEBHOOK_SIGNING_KEY = "demo-residency-webhook-key";
+
 const CLASSIFICATION_LABELS = {
   "public-metadata": "Public metadata",
   "unpublished-manuscript": "Unpublished manuscript",
@@ -20,13 +29,6 @@ function isoDateOnly(value) {
 }
 
 function stableDigest(value) {
-  return crypto
-    .createHash("sha256")
-    .update(stableStringify(value))
-    .digest("hex");
-}
-
-function stableDigestDeep(value) {
   return crypto
     .createHash("sha256")
     .update(stableStringify(value))
@@ -93,7 +95,12 @@ function evaluateTransfer(record, tenant, destination, generatedAt) {
     });
   }
 
-  if (crossBorder && tenant.policy.requiresSccForNonAdequateRegion && !destination.adequacy) {
+  if (
+    crossBorder &&
+    tenant.policy.requiresSccForNonAdequateRegion &&
+    !destination.adequacy &&
+    !destination.hasScc
+  ) {
     decision = raiseDecision(decision, "blocked");
     findings.push({
       code: "NO_ADEQUACY_OR_SCC",
@@ -101,7 +108,9 @@ function evaluateTransfer(record, tenant, destination, generatedAt) {
       message: "Destination has no adequacy decision and no SCC evidence",
       evidence: {
         regimes: tenant.regimes,
-        destinationRegion: destination.region
+        destinationRegion: destination.region,
+        hasScc: Boolean(destination.hasScc),
+        sccEvidenceDigest: destination.sccEvidenceDigest ?? null
       }
     });
   }
@@ -157,7 +166,8 @@ function evaluateTransfer(record, tenant, destination, generatedAt) {
       message: "Cross-border transfer has required safeguards",
       evidence: {
         hasDpa: destination.hasDpa,
-        adequacy: destination.adequacy
+        adequacy: destination.adequacy,
+        hasScc: Boolean(destination.hasScc)
       }
     });
   }
@@ -180,7 +190,7 @@ function evaluateTransfer(record, tenant, destination, generatedAt) {
     crossBorder,
     decision,
     findings,
-    digest: stableDigestDeep({
+    digest: stableDigest({
       recordId: record.id,
       tenantId: tenant.id,
       destinationId: destination.id,
@@ -224,12 +234,24 @@ function summarizeDashboard(results) {
         id: result.id,
         tenantName: result.tenantName,
         decision: result.decision,
-        topFinding: result.findings[0]?.code ?? "NONE"
+        topFinding: topFindingCode(result.findings)
       }))
   };
 }
 
-function buildWebhookEvents(results, generatedAt) {
+function topFindingCode(findings) {
+  const top = findings.reduce((best, finding) => {
+    if (!best) {
+      return finding;
+    }
+
+    return SEVERITY_RANK[finding.severity] > SEVERITY_RANK[best.severity] ? finding : best;
+  }, null);
+
+  return top?.code ?? "NONE";
+}
+
+function buildWebhookEvents(results, generatedAt, signingKey) {
   return results.map((result) => {
     const payload = {
       event: `scibase.residency.${result.decision}`,
@@ -240,10 +262,11 @@ function buildWebhookEvents(results, generatedAt) {
       decision: result.decision,
       digest: result.digest
     };
+    const signatureInput = stableStringify(payload);
 
     return {
       ...payload,
-      signature: `sha256=${stableDigest(payload)}`
+      signature: `sha256=${crypto.createHmac("sha256", signingKey).update(signatureInput).digest("hex")}`
     };
   });
 }
@@ -251,7 +274,7 @@ function buildWebhookEvents(results, generatedAt) {
 function buildExportManifest(results, generatedAt) {
   return {
     generatedAt,
-    packageId: `residency-${stableDigestDeep(results).slice(0, 12)}`,
+    packageId: `residency-${stableDigest(results).slice(0, 12)}`,
     entries: results.map((result) => ({
       recordId: result.id,
       workflow: result.workflow,
@@ -264,8 +287,9 @@ function buildExportManifest(results, generatedAt) {
   };
 }
 
-export function evaluateResidency(input) {
+export function evaluateResidency(input, options = {}) {
   const generatedAt = input.generatedAt ?? new Date().toISOString();
+  const webhookSigningKey = options.webhookSigningKey ?? DEFAULT_WEBHOOK_SIGNING_KEY;
   const tenants = new Map(input.tenants.map((tenant) => [tenant.id, tenant]));
   const destinations = new Map(input.destinations.map((destination) => [destination.id, destination]));
 
@@ -276,7 +300,7 @@ export function evaluateResidency(input) {
   });
 
   const dashboard = summarizeDashboard(results);
-  const webhookEvents = buildWebhookEvents(results, generatedAt);
+  const webhookEvents = buildWebhookEvents(results, generatedAt, webhookSigningKey);
   const exportManifest = buildExportManifest(results, generatedAt);
 
   return {
@@ -285,7 +309,7 @@ export function evaluateResidency(input) {
     dashboard,
     webhookEvents,
     exportManifest,
-    auditDigest: stableDigestDeep({
+    auditDigest: stableDigest({
       generatedAt,
       results,
       dashboard,

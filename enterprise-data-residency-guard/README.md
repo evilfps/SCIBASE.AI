@@ -7,7 +7,7 @@ Institutional customers need proof that research artifacts, identities, exports,
 - Region-aware transfer decisions for repository exports, LMS sync, journals, funder portals, and lab notebooks.
 - Research data classifications including public metadata, unpublished manuscripts, controlled human-subject data, PHI, grant reports, and embargoed preprints.
 - Admin dashboard metrics for approved, review, and blocked transfers.
-- Webhook-safe event envelopes with deterministic digests.
+- Webhook-safe event envelopes with deterministic HMAC signatures.
 - Export manifest entries that preserve residency evidence without credentials.
 
 ## Run It
@@ -22,7 +22,7 @@ npm run demo
 
 - Synthetic data only. No credentials, protected health data, or real institution records.
 - Zero dependencies. The logic uses Node built-ins so reviewers can run it offline.
-- The sample shows one blocked PHI transfer, two manual reviews, and approved in-region exports.
+- The sample shows one blocked PHI transfer, one manual review, and approved in-region exports.
 
 ## Files
 

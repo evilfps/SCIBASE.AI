@@ -1,4 +1,5 @@
 import assert from "node:assert/strict";
+import crypto from "node:crypto";
 import fs from "node:fs";
 import path from "node:path";
 import test from "node:test";
@@ -34,6 +35,9 @@ test("evaluates data residency transfer decisions", () => {
   assert.equal(byId.get("rec-us-patient-dashboard").decision, "review");
   assert.equal(byId.get("rec-uk-grant-report").decision, "approved");
   assert.equal(byId.get("rec-eu-embargoed-preprint").decision, "blocked");
+
+  const clinicalQueueItem = report.dashboard.queue.find((item) => item.id === "rec-eu-clinical-supplement");
+  assert.equal(clinicalQueueItem.topFinding, "MISSING_DPA");
 });
 
 test("builds stable webhook signatures and export manifest evidence", () => {
@@ -42,7 +46,15 @@ test("builds stable webhook signatures and export manifest evidence", () => {
 
   assert.equal(first.auditDigest, second.auditDigest);
   assert.equal(first.webhookEvents.length, input.records.length);
-  assert.ok(first.webhookEvents.every((event) => event.signature.startsWith("sha256=")));
+  assert.ok(first.webhookEvents.every((event) => /^sha256=[a-f0-9]{64}$/.test(event.signature)));
+  assert.notEqual(
+    first.webhookEvents[0].signature,
+    evaluateResidency(input, { webhookSigningKey: "alternate-reviewer-key" }).webhookEvents[0].signature
+  );
+  assert.equal(
+    first.webhookEvents[0].signature.length,
+    `sha256=${crypto.createHmac("sha256", "demo-residency-webhook-key").update("{}").digest("hex")}`.length
+  );
   assert.match(first.exportManifest.packageId, /^residency-[a-f0-9]{12}$/);
   assert.equal(first.exportManifest.entries[2].decision, "blocked");
   assert.ok(first.exportManifest.entries[2].findingCodes.includes("BLOCKED_CLASSIFICATION"));
