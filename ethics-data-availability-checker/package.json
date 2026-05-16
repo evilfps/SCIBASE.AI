@@ -1,0 +1,17 @@
+{
+  "name": "ethics-data-availability-checker",
+  "version": "1.0.0",
+  "description": "Ethics and data availability readiness checks for research assistant review packets.",
+  "type": "module",
+  "scripts": {
+    "check": "node --check src/ethics-data-availability-checker.js && node --check scripts/demo.js && node --check test/ethics-data-availability-checker.test.js",
+    "test": "node --test test/*.test.js",
+    "demo": "node scripts/demo.js"
+  },
+  "keywords": [
+    "research-review",
+    "ethics-readiness",
+    "data-availability"
+  ],
+  "license": "MIT"
+}

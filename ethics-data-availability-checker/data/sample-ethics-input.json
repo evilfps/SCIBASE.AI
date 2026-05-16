@@ -1,0 +1,84 @@
+{
+  "project": {
+    "id": "proj-neuro-immune-042",
+    "title": "Neuroimmune Marker Study",
+    "stage": "pre_submission"
+  },
+  "generatedAt": "2026-05-16T16:00:00.000Z",
+  "signingKey": "sample-review-key",
+  "ethics": {
+    "humanSubjects": true,
+    "approval": {
+      "status": "approved",
+      "protocolId": "IRB-2026-1442",
+      "expiresAt": "2026-05-30"
+    },
+    "consent": {
+      "status": "complete",
+      "scope": "internal_only"
+    },
+    "vulnerablePopulation": true,
+    "safeguards": [
+      "deidentified_exports",
+      "guardian_consent"
+    ],
+    "crossBorderTransfer": true,
+    "transferBasis": "institutional_dpa"
+  },
+  "dataAvailability": {
+    "statement": "Participant-level data is available through controlled access after review by the study data access committee.",
+    "repository": {
+      "url": "https://data.example.org/studies/neuroimmune-042",
+      "visibility": "controlled"
+    },
+    "accession": "SCIBASE-NEURO-042",
+    "sensitiveData": true,
+    "accessCommittee": "Northbridge Data Access Board",
+    "license": "CC-BY-NC-4.0",
+    "embargoUntil": "2026-08-01",
+    "embargoReason": "journal review embargo"
+  },
+  "codeAvailability": {
+    "repository": {
+      "url": "https://git.example.org/neuroimmune/analysis",
+      "commit": "2f1c8a9d7b11"
+    },
+    "environment": "Dockerfile.sha256:64c983",
+    "reproductionCommand": "npm run reproduce"
+  },
+  "artifacts": [
+    {
+      "id": "artifact-cytokine-table",
+      "type": "dataset",
+      "checksum": "sha256:af31",
+      "linkedInManuscript": true
+    },
+    {
+      "id": "artifact-figure-2",
+      "type": "figure",
+      "checksum": "sha256:ba84",
+      "linkedInManuscript": true
+    }
+  ],
+  "claims": [
+    {
+      "id": "claim-primary-marker",
+      "text": "Marker CX-17 is associated with relapse risk.",
+      "requiresData": true,
+      "requiresEthics": true,
+      "evidenceArtifactIds": [
+        "artifact-cytokine-table",
+        "artifact-figure-2"
+      ]
+    },
+    {
+      "id": "claim-secondary-model",
+      "text": "The secondary model is ready for external validation.",
+      "requiresData": true,
+      "requiresEthics": false,
+      "evidenceArtifactIds": [
+        "artifact-missing-model"
+      ]
+    }
+  ]
+}
