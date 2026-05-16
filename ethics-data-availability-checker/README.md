@@ -23,7 +23,8 @@ npm run demo
 ## Demo Assets
 
 - `docs/demo.svg`
-- `docs/demo.webm`
+- short demo video: `docs/demo.webm`
+- `docs/demo.gif`
 
 ## API
 
