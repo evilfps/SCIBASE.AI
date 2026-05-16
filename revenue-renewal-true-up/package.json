@@ -1,0 +1,12 @@
+{
+  "name": "revenue-renewal-true-up",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Renewal, seat true-up, and churn risk controls for SCIBASE revenue infrastructure.",
+  "scripts": {
+    "check": "node --check src/revenue-renewal-true-up.js && node --check scripts/demo.js && node --check test/revenue-renewal-true-up.test.js",
+    "test": "node --test test/revenue-renewal-true-up.test.js",
+    "demo": "node scripts/demo.js"
+  }
+}

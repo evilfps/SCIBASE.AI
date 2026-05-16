@@ -1,0 +1,216 @@
+{
+  "generatedAt": "2026-05-16T09:30:00Z",
+  "currency": "USD",
+  "plans": [
+    {
+      "id": "institutional-research",
+      "name": "Institutional Research",
+      "seatUnitPriceCents": 18000,
+      "includedComputeCents": 120000,
+      "annualDiscountRate": 0.12,
+      "volumeDiscountRate": 0.07,
+      "volumeSeatThreshold": 100
+    },
+    {
+      "id": "lab-growth",
+      "name": "Lab Growth",
+      "seatUnitPriceCents": 9600,
+      "includedComputeCents": 42000,
+      "annualDiscountRate": 0.08,
+      "volumeDiscountRate": 0.03,
+      "volumeSeatThreshold": 40
+    }
+  ],
+  "accounts": [
+    {
+      "id": "acct-northstar",
+      "name": "Northstar University Library",
+      "segment": "institution",
+      "contract": {
+        "planId": "institutional-research",
+        "renewalDate": "2026-06-12",
+        "term": "annual",
+        "contractedSeats": 80,
+        "baseAnnualCents": 1440000,
+        "autoRenew": true,
+        "noticeDays": 30,
+        "purchaseOrderRequired": true,
+        "dataProcessingAddendumExpires": "2026-09-01",
+        "slaTier": "institutional"
+      },
+      "billing": {
+        "paymentRail": "institutional_invoice",
+        "openInvoices": [
+          {
+            "id": "inv-1021",
+            "status": "past_due",
+            "ageDays": 38,
+            "amountCents": 220000
+          }
+        ]
+      },
+      "usage": {
+        "activeSeats": 96,
+        "provisionedSeats": 108,
+        "monthlyActiveSeats": [101, 99, 98, 96],
+        "computeCreditsUsedCents": 146000,
+        "licensedApiCalls": 98000,
+        "adminsActive": 5
+      },
+      "support": {
+        "openCriticalTickets": 1,
+        "slaBreaches": 2,
+        "avgFirstResponseHours": 9.5
+      },
+      "commercial": {
+        "customerSuccessOwner": "Maya Chen",
+        "healthScore": 64,
+        "lastExecutiveReview": "2026-02-01",
+        "expansionSignals": ["new genomics center onboarding"]
+      },
+      "requirements": {
+        "securityReviewDue": "2026-05-25",
+        "purchaseOrder": ""
+      }
+    },
+    {
+      "id": "acct-riverlab",
+      "name": "River Lab Consortium",
+      "segment": "consortium",
+      "contract": {
+        "planId": "institutional-research",
+        "renewalDate": "2026-07-01",
+        "term": "annual",
+        "contractedSeats": 120,
+        "baseAnnualCents": 2160000,
+        "autoRenew": false,
+        "noticeDays": 45,
+        "purchaseOrderRequired": true,
+        "dataProcessingAddendumExpires": "2026-12-20",
+        "slaTier": "institutional"
+      },
+      "billing": {
+        "paymentRail": "institutional_invoice",
+        "openInvoices": []
+      },
+      "usage": {
+        "activeSeats": 148,
+        "provisionedSeats": 151,
+        "monthlyActiveSeats": [121, 131, 140, 148],
+        "computeCreditsUsedCents": 110000,
+        "licensedApiCalls": 164000,
+        "adminsActive": 9
+      },
+      "support": {
+        "openCriticalTickets": 0,
+        "slaBreaches": 0,
+        "avgFirstResponseHours": 2.7
+      },
+      "commercial": {
+        "customerSuccessOwner": "Andre Park",
+        "healthScore": 91,
+        "lastExecutiveReview": "2026-04-18",
+        "expansionSignals": ["three member labs requested private projects"]
+      },
+      "requirements": {
+        "securityReviewDue": "2026-06-12",
+        "purchaseOrder": "PO-RLC-2026-077"
+      }
+    },
+    {
+      "id": "acct-hillview",
+      "name": "Hillview Methods Lab",
+      "segment": "lab",
+      "contract": {
+        "planId": "lab-growth",
+        "renewalDate": "2026-06-04",
+        "term": "annual",
+        "contractedSeats": 34,
+        "baseAnnualCents": 326400,
+        "autoRenew": false,
+        "noticeDays": 30,
+        "purchaseOrderRequired": false,
+        "dataProcessingAddendumExpires": "2026-05-30",
+        "slaTier": "standard"
+      },
+      "billing": {
+        "paymentRail": "card",
+        "openInvoices": [
+          {
+            "id": "inv-2098",
+            "status": "open",
+            "ageDays": 6,
+            "amountCents": 31200
+          }
+        ]
+      },
+      "usage": {
+        "activeSeats": 19,
+        "provisionedSeats": 21,
+        "monthlyActiveSeats": [33, 29, 24, 19],
+        "computeCreditsUsedCents": 26000,
+        "licensedApiCalls": 9000,
+        "adminsActive": 1
+      },
+      "support": {
+        "openCriticalTickets": 0,
+        "slaBreaches": 1,
+        "avgFirstResponseHours": 7.2
+      },
+      "commercial": {
+        "customerSuccessOwner": "Nora Singh",
+        "healthScore": 51,
+        "lastExecutiveReview": "2025-12-10",
+        "expansionSignals": []
+      },
+      "requirements": {
+        "securityReviewDue": "2026-06-20",
+        "purchaseOrder": null
+      }
+    },
+    {
+      "id": "acct-clearwater",
+      "name": "Clearwater Research Office",
+      "segment": "institution",
+      "contract": {
+        "planId": "institutional-research",
+        "renewalDate": "2026-08-20",
+        "term": "annual",
+        "contractedSeats": 60,
+        "baseAnnualCents": 1080000,
+        "autoRenew": true,
+        "noticeDays": 60,
+        "purchaseOrderRequired": true,
+        "dataProcessingAddendumExpires": "2027-01-15",
+        "slaTier": "institutional"
+      },
+      "billing": {
+        "paymentRail": "institutional_invoice",
+        "openInvoices": []
+      },
+      "usage": {
+        "activeSeats": 61,
+        "provisionedSeats": 64,
+        "monthlyActiveSeats": [58, 60, 61, 61],
+        "computeCreditsUsedCents": 118000,
+        "licensedApiCalls": 74000,
+        "adminsActive": 4
+      },
+      "support": {
+        "openCriticalTickets": 0,
+        "slaBreaches": 0,
+        "avgFirstResponseHours": 3.5
+      },
+      "commercial": {
+        "customerSuccessOwner": "Andre Park",
+        "healthScore": 82,
+        "lastExecutiveReview": "2026-04-02",
+        "expansionSignals": []
+      },
+      "requirements": {
+        "securityReviewDue": "2026-07-24",
+        "purchaseOrder": "PO-CRO-4881"
+      }
+    }
+  ]
+}
