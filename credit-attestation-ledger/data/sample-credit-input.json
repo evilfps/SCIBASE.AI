@@ -1,0 +1,94 @@
+{
+  "generatedAt": "2026-05-16T11:10:00.000Z",
+  "signingKey": "credit-demo-signing-key",
+  "knownConflicts": [
+    {
+      "contributorId": "u-carol",
+      "attestorId": "u-pi-2",
+      "reason": "same lab funding line"
+    }
+  ],
+  "contributions": [
+    {
+      "id": "CR-001",
+      "contributorId": "u-alex",
+      "contributorName": "Alex Rivera",
+      "projectId": "P-CELL-42",
+      "artifactId": "notebook-rerun-01",
+      "role": "software",
+      "timestamp": "2026-05-10T14:00:00.000Z",
+      "evidence": [
+        {"type": "commit", "id": "a94df12", "summary": "rerun notebook pipeline"},
+        {"type": "artifact", "id": "notebook-rerun-01", "summary": "clean execution output"}
+      ],
+      "attestations": [
+        {"attestorId": "u-pi-1", "attestorRole": "lead", "statement": "Implemented the rerun script."},
+        {"attestorId": "u-reviewer-1", "attestorRole": "reviewer", "statement": "Verified the submitted evidence."}
+      ],
+      "disputes": []
+    },
+    {
+      "id": "CR-002",
+      "contributorId": "u-bela",
+      "contributorName": "Bela Chen",
+      "projectId": "P-CELL-42",
+      "artifactId": "dataset-clean-02",
+      "role": "data-curation",
+      "timestamp": "2026-05-11T09:30:00.000Z",
+      "evidence": [],
+      "attestations": [
+        {"attestorId": "u-bela", "attestorRole": "self", "statement": "Cleaned the dataset."}
+      ],
+      "disputes": []
+    },
+    {
+      "id": "CR-003",
+      "contributorId": "u-carol",
+      "contributorName": "Carol Singh",
+      "projectId": "P-META-7",
+      "artifactId": "review-report-3",
+      "role": "validation",
+      "timestamp": "2026-05-12T18:20:00.000Z",
+      "evidence": [
+        {"type": "review", "id": "RV-88", "summary": "statistical validation notes"}
+      ],
+      "attestations": [
+        {"attestorId": "u-pi-2", "attestorRole": "lead", "statement": "Reviewed the validation notes."}
+      ],
+      "attestorId": "u-pi-2",
+      "disputes": [
+        {"id": "DSP-4", "status": "open", "reason": "role claimed by another reviewer"}
+      ]
+    },
+    {
+      "id": "CR-004",
+      "contributorId": "u-bela",
+      "contributorName": "Bela Chen",
+      "projectId": "P-CELL-42",
+      "artifactId": "dataset-clean-02",
+      "role": "data-curation",
+      "timestamp": "2026-05-11T09:35:00.000Z",
+      "evidence": [
+        {"type": "artifact", "id": "dataset-clean-02", "summary": "deduplicated data table"}
+      ],
+      "attestations": [
+        {"attestorId": "u-reviewer-2", "attestorRole": "reviewer", "statement": "Confirmed curation work."}
+      ],
+      "disputes": []
+    },
+    {
+      "id": "CR-005",
+      "contributorId": "u-dev",
+      "contributorName": "Dev Novak",
+      "projectId": "P-META-7",
+      "artifactId": "figure-pack-9",
+      "role": "figure-polish",
+      "timestamp": "",
+      "evidence": [
+        {"type": "artifact", "id": "figure-pack-9", "summary": "updated figures"}
+      ],
+      "attestations": [],
+      "disputes": []
+    }
+  ]
+}

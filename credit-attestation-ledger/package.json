@@ -1,0 +1,12 @@
+{
+  "name": "credit-attestation-ledger",
+  "version": "1.0.0",
+  "description": "Contributor credit attestation ledger for community reputation workflows.",
+  "type": "module",
+  "scripts": {
+    "check": "node --check src/credit-attestation-ledger.js && node --check scripts/demo.js && node --check test/credit-attestation-ledger.test.js",
+    "test": "node --test",
+    "demo": "node scripts/demo.js"
+  },
+  "license": "MIT"
+}
