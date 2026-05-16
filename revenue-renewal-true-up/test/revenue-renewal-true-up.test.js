@@ -17,8 +17,15 @@ async function loadSample() {
   return JSON.parse(await readFile(samplePath, "utf8"));
 }
 
+async function evaluateSample(options = {}) {
+  return evaluateRenewalPortfolio(await loadSample(), {
+    signingKey: "test-renewal-signing-key",
+    ...options
+  });
+}
+
 test("builds renewal queue decisions and dashboard metrics", async () => {
-  const result = evaluateRenewalPortfolio(await loadSample());
+  const result = await evaluateSample();
   const byId = new Map(result.accounts.map((account) => [account.id, account]));
 
   assert.equal(result.dashboard.totalAccounts, 4);
@@ -38,9 +45,7 @@ test("builds renewal queue decisions and dashboard metrics", async () => {
 });
 
 test("creates deterministic signed events and manifest evidence", async () => {
-  const result = evaluateRenewalPortfolio(await loadSample(), {
-    signingKey: "test-renewal-signing-key"
-  });
+  const result = await evaluateSample();
   const northstarEvent = result.events.find((event) => event.body.accountId === "acct-northstar");
   const canonicalBody = stableStringify(northstarEvent.body);
   const expectedSignature = createHmac("sha256", "test-renewal-signing-key")
@@ -52,18 +57,29 @@ test("creates deterministic signed events and manifest evidence", async () => {
   assert.equal(result.manifest.entries.length, 4);
   assert.equal(result.manifest.digest.length, 64);
 
-  const secondRun = evaluateRenewalPortfolio(await loadSample(), {
-    signingKey: "test-renewal-signing-key"
-  });
+  const secondRun = await evaluateSample();
   assert.deepEqual(secondRun.manifest, result.manifest);
 });
 
 test("renders a compact renewal report", async () => {
-  const result = evaluateRenewalPortfolio(await loadSample());
+  const result = await evaluateSample();
   const report = renderRenewalReport(result);
 
   assert.match(report, /SCIBASE Revenue Renewal True-Up/);
   assert.match(report, /Northstar University Library: blocked/);
   assert.match(report, /River Lab Consortium: expand/);
   assert.match(report, /Manifest digest: [a-f0-9]{64}/);
+});
+
+test("requires explicit signing and clear generatedAt values", async () => {
+  const sample = await loadSample();
+
+  assert.throws(
+    () => evaluateRenewalPortfolio(sample),
+    /Expected signingKey/
+  );
+  assert.throws(
+    () => evaluateRenewalPortfolio(sample, { signingKey: "test-renewal-signing-key", generatedAt: "nope" }),
+    /Invalid generatedAt/
+  );
 });

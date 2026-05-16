@@ -1,14 +1,14 @@
 import { createHash, createHmac } from "node:crypto";
 
-const DEFAULT_SIGNING_KEY = "demo-renewal-signing-key";
 const DAY_MS = 24 * 60 * 60 * 1000;
 
 export function evaluateRenewalPortfolio(input, options = {}) {
   assertInput(input);
+  if (!options.signingKey) {
+    throw new Error("Expected signingKey for renewal event signatures.");
+  }
 
-  const generatedAt = options.generatedAt
-    ? new Date(options.generatedAt)
-    : new Date(input.generatedAt);
+  const generatedAt = parseDate(options.generatedAt ?? input.generatedAt, "generatedAt");
   const plansById = new Map(input.plans.map((plan) => [plan.id, plan]));
 
   const accounts = input.accounts.map((account) => {
@@ -24,7 +24,7 @@ export function evaluateRenewalPortfolio(input, options = {}) {
   const events = accounts.map((account) =>
     createRenewalEvent(account, {
       generatedAt: generatedAt.toISOString(),
-      signingKey: options.signingKey || DEFAULT_SIGNING_KEY
+      signingKey: options.signingKey
     })
   );
 
@@ -193,11 +193,17 @@ function buildFindings(details) {
   }
 
   if (account.requirements.securityReviewDue) {
-    const securityReviewDays = differenceInDays(
-      parseDate(account.requirements.securityReviewDue, "securityReviewDue"),
-      parseDate(account.contract.renewalDate, "renewalDate")
-    );
-    if (securityReviewDays <= 14) {
+    const securityReviewDate = parseDate(account.requirements.securityReviewDue, "securityReviewDue");
+    const renewalDate = parseDate(account.contract.renewalDate, "renewalDate");
+    const daysBeforeRenewal = differenceInDays(renewalDate, securityReviewDate);
+    if (daysBeforeRenewal < 0) {
+      findings.push({
+        code: "security_review_after_renewal",
+        severity: "high",
+        weight: 14,
+        message: "Security review is due after the renewal deadline."
+      });
+    } else if (daysBeforeRenewal <= 14) {
       findings.push({
         code: "security_review_due",
         severity: "medium",
@@ -207,7 +213,14 @@ function buildFindings(details) {
     }
   }
 
-  if (dpaDaysRemaining <= 60) {
+  if (dpaDaysRemaining < 0) {
+    findings.push({
+      code: "dpa_expired",
+      severity: "critical",
+      weight: 22,
+      message: `DPA expired ${Math.abs(dpaDaysRemaining)} days ago.`
+    });
+  } else if (dpaDaysRemaining <= 60) {
     findings.push({
       code: "dpa_expiring",
       severity: "medium",
@@ -335,7 +348,11 @@ function buildActions(account, findings, status) {
     actions.push("send renewal security packet");
   }
 
-  if (findingCodes.has("dpa_expiring")) {
+  if (findingCodes.has("security_review_after_renewal")) {
+    actions.push("pull security review before renewal signature");
+  }
+
+  if (findingCodes.has("dpa_expiring") || findingCodes.has("dpa_expired")) {
     actions.push("refresh DPA before renewal signature");
   }
 
@@ -390,7 +407,7 @@ export function createRenewalEvent(account, options = {}) {
     auditDigest: account.auditDigest
   };
   const canonicalBody = stableStringify(body);
-  const signature = createHmac("sha256", options.signingKey || DEFAULT_SIGNING_KEY)
+  const signature = createHmac("sha256", options.signingKey)
     .update(canonicalBody)
     .digest("hex");
 
@@ -402,12 +419,13 @@ export function createRenewalEvent(account, options = {}) {
 }
 
 function buildManifest(accounts, events, generatedAt) {
+  const eventIdsByAccount = new Map(events.map((event) => [event.body.accountId, event.id]));
   const entries = accounts.map((account) => ({
     accountId: account.id,
     status: account.status,
     riskScore: account.riskScore,
     auditDigest: account.auditDigest,
-    eventId: events.find((event) => event.body.accountId === account.id).id
+    eventId: eventIdsByAccount.get(account.id)
   }));
 
   return {

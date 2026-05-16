@@ -6,6 +6,8 @@ import { evaluateRenewalPortfolio, renderRenewalReport } from "../src/revenue-re
 const currentDir = dirname(fileURLToPath(import.meta.url));
 const dataPath = join(currentDir, "../data/sample-renewal-input.json");
 const input = JSON.parse(await readFile(dataPath, "utf8"));
-const result = evaluateRenewalPortfolio(input);
+const result = evaluateRenewalPortfolio(input, {
+  signingKey: "local-renewal-demo-key"
+});
 
 console.log(renderRenewalReport(result));
