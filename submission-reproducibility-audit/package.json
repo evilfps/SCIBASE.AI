@@ -1,0 +1,12 @@
+{
+  "name": "submission-reproducibility-audit",
+  "version": "1.0.0",
+  "description": "Reproducibility audit module for scientific bounty submissions.",
+  "type": "module",
+  "scripts": {
+    "check": "node --check src/submission-reproducibility-audit.js && node --check scripts/demo.js && node --check test/submission-reproducibility-audit.test.js",
+    "test": "node --test",
+    "demo": "node scripts/demo.js"
+  },
+  "license": "MIT"
+}

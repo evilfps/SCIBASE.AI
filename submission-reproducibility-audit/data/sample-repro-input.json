@@ -1,0 +1,116 @@
+{
+  "generatedAt": "2026-05-16T10:30:00.000Z",
+  "signingKey": "review-demo-signing-key",
+  "challenge": {
+    "id": "SCI-BNTY-18-REPRO",
+    "title": "CRISPR off-target ranking bounty",
+    "requiredDeliverables": ["code", "dataset", "report", "model"],
+    "acceptance": {
+      "maxMetricDriftPercent": 2
+    }
+  },
+  "submissions": [
+    {
+      "id": "SUB-ALPHA",
+      "team": "Lab Alpha",
+      "artifacts": [
+        {"type": "code", "name": "pipeline.tar.gz", "sha256": "6b4b7e4fd8e3a628c9f2178f4b65820f4db22f06e552ec9db0fb8f21c7d93d41"},
+        {"type": "dataset", "name": "public-guide-set.csv", "sha256": "8a6099f2ab5efeb65bca247fcfbeec44b7a30d36d07f3c85c8128003f9a67144"},
+        {"type": "report", "name": "final-report.pdf", "sha256": "c44b99419e2f416af8e8401bb12652a63ff76a4f0d2f12f59f59b518d9bdf845"},
+        {"type": "model", "name": "ranker.onnx", "sha256": "7f508a3f8423cf33424348ae72f973590c9a2f4886033b09a4f350ff6334f07f"}
+      ],
+      "datasets": [
+        {"id": "DS-PUBLIC-1", "access": "public", "ndaConfirmed": false}
+      ],
+      "environment": {
+        "containerDigest": "sha256:1c7c9c9421dd32a816398341f9af2c49f4fa53b0d7a2e94e38fda9fe002bfeba",
+        "lockfilePresent": true,
+        "dependencies": [
+          {"name": "node", "version": "20.19.4"},
+          {"name": "scikit-learn", "version": "1.5.2"}
+        ]
+      },
+      "reproduction": {
+        "seed": "crispr-42",
+        "checks": [
+          {"name": "unit tests", "status": "pass"},
+          {"name": "notebook rerun", "status": "pass"},
+          {"name": "model score replay", "status": "pass"}
+        ],
+        "metrics": [
+          {"name": "auroc", "expected": 0.912, "actual": 0.907, "driftPercent": 0.55},
+          {"name": "top10_recall", "expected": 0.841, "actual": 0.834, "driftPercent": 0.83}
+        ]
+      },
+      "notebook": {
+        "executedCleanly": true
+      }
+    },
+    {
+      "id": "SUB-BETA",
+      "team": "Genome Forge",
+      "artifacts": [
+        {"type": "code", "name": "source.zip", "sha256": "a9595f9a36ac5a8699738ca7ce85d1d72ee4921a8de043c0eb79f099ac5b1dd4"},
+        {"type": "dataset", "name": "guide-data.csv", "sha256": "4ded2dff28a9dc3bf09d1f697c5a8ec147bafaa79b45db75134501f73f22b962"},
+        {"type": "report", "name": "report.pdf", "sha256": "7ed55513c5a7ce6ddda22284a22e901d2ed9f4f0eec4ef98cbd50a0f34a28db0"},
+        {"type": "model", "name": "model.pkl", "sha256": "4972a68e77cfe4f8312f479cb71f35da8f2e67836d313f8b77c6a2f0e663ea2d"}
+      ],
+      "datasets": [
+        {"id": "DS-PUBLIC-1", "access": "public", "ndaConfirmed": false}
+      ],
+      "environment": {
+        "containerDigest": "",
+        "lockfilePresent": false,
+        "dependencies": [
+          {"name": "python", "version": "3.11.x"},
+          {"name": "numpy", "version": "*"}
+        ]
+      },
+      "reproduction": {
+        "seed": "",
+        "checks": [
+          {"name": "unit tests", "status": "pass"},
+          {"name": "notebook rerun", "status": "fail"}
+        ],
+        "metrics": [
+          {"name": "auroc", "expected": 0.91, "actual": 0.86, "driftPercent": 5.49}
+        ]
+      },
+      "notebook": {
+        "executedCleanly": false
+      }
+    },
+    {
+      "id": "SUB-GAMMA",
+      "team": "Northern Bench",
+      "artifacts": [
+        {"type": "code", "name": "code.zip", "sha256": ""},
+        {"type": "dataset", "name": "restricted-patient-guides.csv", "sha256": "c954173c0eb83ba9c030414f67eebcf89368df541ed1cc2b8f5f3b5cf423d123"},
+        {"type": "report", "name": "findings.pdf", "sha256": "3262992b9c9f6b0a69d20fd994f3a018693fbdc2fc4f64c6727abc5ad67f9075"}
+      ],
+      "datasets": [
+        {"id": "DS-RESTRICTED-9", "access": "restricted", "ndaConfirmed": false}
+      ],
+      "environment": {
+        "containerDigest": "sha256:08fdb5b0f824ed511f16d2ddf48e34fe85dbe9b78d0597f34cf8d68de122bfbf",
+        "lockfilePresent": true,
+        "dependencies": [
+          {"name": "python", "version": "3.11.9"}
+        ]
+      },
+      "reproduction": {
+        "seed": "gamma-7",
+        "checks": [
+          {"name": "unit tests", "status": "fail"},
+          {"name": "model score replay", "status": "blocked"}
+        ],
+        "metrics": [
+          {"name": "auroc", "expected": 0.9, "actual": 0.9, "driftPercent": 0}
+        ]
+      },
+      "notebook": {
+        "executedCleanly": true
+      }
+    }
+  ]
+}

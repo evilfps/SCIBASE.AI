@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="960" height="540" viewBox="0 0 960 540" role="img" aria-labelledby="title desc">
+  <title id="title">Submission reproducibility audit demo</title>
+  <desc id="desc">Dashboard preview showing reproducible, review, and blocked scientific bounty submissions.</desc>
+  <rect width="960" height="540" fill="#f7faf8"/>
+  <rect x="48" y="44" width="864" height="452" rx="10" fill="#ffffff" stroke="#1f2933" stroke-width="2"/>
+  <text x="82" y="96" font-family="Arial, sans-serif" font-size="32" font-weight="700" fill="#102a43">Reproducibility audit queue</text>
+  <text x="82" y="126" font-family="Arial, sans-serif" font-size="15" fill="#52606d">Scientific bounty submissions checked before payout and IP release</text>
+
+  <rect x="82" y="158" width="226" height="92" rx="8" fill="#e3fcec" stroke="#0e9f6e"/>
+  <text x="106" y="194" font-family="Arial, sans-serif" font-size="18" font-weight="700" fill="#03543f">Ready</text>
+  <text x="106" y="230" font-family="Arial, sans-serif" font-size="36" font-weight="700" fill="#03543f">1</text>
+
+  <rect x="366" y="158" width="226" height="92" rx="8" fill="#fff8e6" stroke="#d97706"/>
+  <text x="390" y="194" font-family="Arial, sans-serif" font-size="18" font-weight="700" fill="#92400e">Needs review</text>
+  <text x="390" y="230" font-family="Arial, sans-serif" font-size="36" font-weight="700" fill="#92400e">1</text>
+
+  <rect x="650" y="158" width="226" height="92" rx="8" fill="#fee2e2" stroke="#dc2626"/>
+  <text x="674" y="194" font-family="Arial, sans-serif" font-size="18" font-weight="700" fill="#991b1b">Blocked</text>
+  <text x="674" y="230" font-family="Arial, sans-serif" font-size="36" font-weight="700" fill="#991b1b">1</text>
+
+  <text x="82" y="296" font-family="Arial, sans-serif" font-size="20" font-weight="700" fill="#1f2933">Reviewer queue</text>
+  <g font-family="Arial, sans-serif" font-size="16">
+    <rect x="82" y="318" width="794" height="42" rx="6" fill="#fee2e2"/>
+    <text x="104" y="345" fill="#7f1d1d">SUB-GAMMA</text>
+    <text x="246" y="345" fill="#7f1d1d">blocked until restricted data and manifest gaps are fixed</text>
+
+    <rect x="82" y="372" width="794" height="42" rx="6" fill="#fff8e6"/>
+    <text x="104" y="399" fill="#78350f">SUB-BETA</text>
+    <text x="246" y="399" fill="#78350f">held for reviewer after rerun failure and metric drift</text>
+
+    <rect x="82" y="426" width="794" height="42" rx="6" fill="#e3fcec"/>
+    <text x="104" y="453" fill="#064e3b">SUB-ALPHA</text>
+    <text x="246" y="453" fill="#064e3b">ready for payout release with signed audit event</text>
+  </g>
+</svg>
