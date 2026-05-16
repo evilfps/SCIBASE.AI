@@ -1,0 +1,168 @@
+{
+  "generatedAt": "2026-05-16T08:50:00.000Z",
+  "tenants": [
+    {
+      "id": "tenant-eu-biology",
+      "name": "Helmholtz Biology Institute",
+      "homeRegion": "EU",
+      "allowedRegions": ["EU", "EEA"],
+      "regimes": ["GDPR", "HorizonEU"],
+      "policy": {
+        "requiresDpaForCrossBorder": true,
+        "requiresSccForNonAdequateRegion": true,
+        "requiresHumanReviewForSensitiveData": true,
+        "blockedClassifications": ["phi"],
+        "embargoExportsRequireRelease": true
+      }
+    },
+    {
+      "id": "tenant-us-clinical",
+      "name": "Midwest Translational Lab",
+      "homeRegion": "US",
+      "allowedRegions": ["US"],
+      "regimes": ["HIPAA", "NIH"],
+      "policy": {
+        "requiresDpaForCrossBorder": true,
+        "requiresSccForNonAdequateRegion": false,
+        "requiresHumanReviewForSensitiveData": true,
+        "blockedClassifications": ["phi"],
+        "embargoExportsRequireRelease": true
+      }
+    },
+    {
+      "id": "tenant-uk-social",
+      "name": "Northshire Social Science Centre",
+      "homeRegion": "UK",
+      "allowedRegions": ["UK", "EU", "US"],
+      "regimes": ["UK-GDPR", "UKRI"],
+      "policy": {
+        "requiresDpaForCrossBorder": false,
+        "requiresSccForNonAdequateRegion": true,
+        "requiresHumanReviewForSensitiveData": false,
+        "blockedClassifications": [],
+        "embargoExportsRequireRelease": true
+      }
+    }
+  ],
+  "destinations": [
+    {
+      "id": "zenodo-eu",
+      "name": "Zenodo",
+      "type": "repository",
+      "region": "EU",
+      "adequacy": true,
+      "hasDpa": true,
+      "supportsRestrictedAccess": true
+    },
+    {
+      "id": "pubmed-us",
+      "name": "PubMed Central",
+      "type": "repository",
+      "region": "US",
+      "adequacy": true,
+      "hasDpa": true,
+      "supportsRestrictedAccess": true
+    },
+    {
+      "id": "canvas-us",
+      "name": "Canvas LMS",
+      "type": "lms",
+      "region": "US",
+      "adequacy": true,
+      "hasDpa": false,
+      "supportsRestrictedAccess": false
+    },
+    {
+      "id": "journal-apac",
+      "name": "Pacific Journal Portal",
+      "type": "journal",
+      "region": "APAC",
+      "adequacy": false,
+      "hasDpa": false,
+      "supportsRestrictedAccess": true
+    },
+    {
+      "id": "dspace-uk",
+      "name": "Institutional DSpace",
+      "type": "repository",
+      "region": "UK",
+      "adequacy": true,
+      "hasDpa": true,
+      "supportsRestrictedAccess": true
+    }
+  ],
+  "records": [
+    {
+      "id": "rec-astro-open-data",
+      "tenantId": "tenant-uk-social",
+      "title": "Open survey response codebook",
+      "classification": "public-metadata",
+      "sourceRegion": "UK",
+      "destinationId": "dspace-uk",
+      "workflow": "repository-sync",
+      "embargoUntil": null,
+      "containsHumanSubjects": false,
+      "deidentified": true
+    },
+    {
+      "id": "rec-eu-manuscript",
+      "tenantId": "tenant-eu-biology",
+      "title": "Unpublished microscopy manuscript",
+      "classification": "unpublished-manuscript",
+      "sourceRegion": "EU",
+      "destinationId": "zenodo-eu",
+      "workflow": "preprint-deposit",
+      "embargoUntil": null,
+      "containsHumanSubjects": false,
+      "deidentified": true
+    },
+    {
+      "id": "rec-eu-clinical-supplement",
+      "tenantId": "tenant-eu-biology",
+      "title": "Clinical supplement with rare disease cohort",
+      "classification": "phi",
+      "sourceRegion": "EU",
+      "destinationId": "journal-apac",
+      "workflow": "journal-submission",
+      "embargoUntil": null,
+      "containsHumanSubjects": true,
+      "deidentified": false
+    },
+    {
+      "id": "rec-us-patient-dashboard",
+      "tenantId": "tenant-us-clinical",
+      "title": "Patient dashboard screenshots for teaching",
+      "classification": "controlled-human-data",
+      "sourceRegion": "US",
+      "destinationId": "canvas-us",
+      "workflow": "lms-sync",
+      "embargoUntil": null,
+      "containsHumanSubjects": true,
+      "deidentified": false
+    },
+    {
+      "id": "rec-uk-grant-report",
+      "tenantId": "tenant-uk-social",
+      "title": "UKRI project outcome packet",
+      "classification": "grant-report",
+      "sourceRegion": "UK",
+      "destinationId": "pubmed-us",
+      "workflow": "funder-export",
+      "embargoUntil": null,
+      "containsHumanSubjects": false,
+      "deidentified": true
+    },
+    {
+      "id": "rec-eu-embargoed-preprint",
+      "tenantId": "tenant-eu-biology",
+      "title": "Embargoed CRISPR preprint package",
+      "classification": "embargoed-preprint",
+      "sourceRegion": "EU",
+      "destinationId": "pubmed-us",
+      "workflow": "preprint-deposit",
+      "embargoUntil": "2026-07-01",
+      "containsHumanSubjects": false,
+      "deidentified": true
+    }
+  ]
+}

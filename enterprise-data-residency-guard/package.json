@@ -1,0 +1,12 @@
+{
+  "name": "enterprise-data-residency-guard",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Enterprise data residency and transfer impact guard for SCIBASE institutional tooling.",
+  "scripts": {
+    "check": "node --check src/data-residency-guard.js && node --check scripts/demo.js && node --check test/data-residency-guard.test.js",
+    "test": "node --test test/data-residency-guard.test.js",
+    "demo": "node scripts/demo.js"
+  }
+}

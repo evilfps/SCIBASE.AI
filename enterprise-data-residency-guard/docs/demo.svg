@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="720" viewBox="0 0 1280 720" role="img" aria-labelledby="title desc">
+  <title id="title">SCIBASE data residency guard demo</title>
+  <desc id="desc">Dashboard preview showing approved, review, and blocked cross-border research transfers.</desc>
+  <rect width="1280" height="720" fill="#f7f4ee"/>
+  <rect x="56" y="48" width="1168" height="624" rx="18" fill="#fffdf8" stroke="#1f2933" stroke-width="2"/>
+  <text x="96" y="112" font-family="Arial, sans-serif" font-size="38" font-weight="700" fill="#172033">Enterprise data residency guard</text>
+  <text x="96" y="154" font-family="Arial, sans-serif" font-size="20" fill="#536171">SCIBASE issue #19: cross-border transfer decisions before export or webhook delivery</text>
+  <g font-family="Arial, sans-serif">
+    <rect x="96" y="204" width="240" height="120" rx="12" fill="#e6f4ea" stroke="#1b7f46"/>
+    <text x="124" y="252" font-size="22" fill="#135d34">Approved</text>
+    <text x="124" y="298" font-size="46" font-weight="700" fill="#135d34">3</text>
+    <rect x="376" y="204" width="240" height="120" rx="12" fill="#fff7d6" stroke="#a87600"/>
+    <text x="404" y="252" font-size="22" fill="#835900">Review</text>
+    <text x="404" y="298" font-size="46" font-weight="700" fill="#835900">1</text>
+    <rect x="656" y="204" width="240" height="120" rx="12" fill="#fde8e8" stroke="#b42318"/>
+    <text x="684" y="252" font-size="22" fill="#8a1f17">Blocked</text>
+    <text x="684" y="298" font-size="46" font-weight="700" fill="#8a1f17">2</text>
+    <rect x="936" y="204" width="240" height="120" rx="12" fill="#e8efff" stroke="#2d5bb3"/>
+    <text x="964" y="252" font-size="22" fill="#23498e">Cross-border</text>
+    <text x="964" y="298" font-size="46" font-weight="700" fill="#23498e">3</text>
+  </g>
+  <g font-family="Arial, sans-serif" font-size="22">
+    <text x="96" y="394" font-weight="700" fill="#172033">Decision queue</text>
+    <text x="96" y="440" fill="#8a1f17">blocked</text>
+    <text x="210" y="440" fill="#172033">rec-eu-clinical-supplement</text>
+    <text x="600" y="440" fill="#536171">Missing DPA, no adequacy, PHI boundary</text>
+    <text x="96" y="492" fill="#835900">review</text>
+    <text x="210" y="492" fill="#172033">rec-us-patient-dashboard</text>
+    <text x="600" y="492" fill="#536171">Human-subject data needs approval</text>
+    <text x="96" y="544" fill="#8a1f17">blocked</text>
+    <text x="210" y="544" fill="#172033">rec-eu-embargoed-preprint</text>
+    <text x="600" y="544" fill="#536171">Active embargo until 2026-07-01</text>
+  </g>
+  <text x="96" y="622" font-family="Arial, sans-serif" font-size="18" fill="#536171">Run: npm run check &amp;&amp; npm test &amp;&amp; npm run demo</text>
+</svg>
