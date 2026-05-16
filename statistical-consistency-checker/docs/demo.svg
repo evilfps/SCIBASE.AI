@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="960" height="540" viewBox="0 0 960 540" role="img" aria-labelledby="title desc">
+  <title id="title">Statistical consistency checker demo</title>
+  <desc id="desc">Terminal-style demo output for the statistical consistency checker.</desc>
+  <rect width="960" height="540" fill="#111827"/>
+  <rect x="56" y="54" width="848" height="432" rx="8" fill="#f9fafb"/>
+  <rect x="56" y="54" width="848" height="48" rx="8" fill="#1f2937"/>
+  <circle cx="86" cy="78" r="7" fill="#ef4444"/>
+  <circle cx="110" cy="78" r="7" fill="#f59e0b"/>
+  <circle cx="134" cy="78" r="7" fill="#10b981"/>
+  <text x="88" y="148" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="25" fill="#111827">Statistical Consistency Check</text>
+  <text x="88" y="196" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="22" fill="#111827">Neuroimmune Marker Study: blocked (24/100)</text>
+  <text x="88" y="236" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="22" fill="#111827">Findings high/medium/low: 2/4/1</text>
+  <text x="88" y="276" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="22" fill="#111827">Manifest: 20b466c71e117884</text>
+  <text x="88" y="344" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="20" fill="#b91c1c">- high code_artifact_not_found</text>
+  <text x="88" y="382" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="20" fill="#b91c1c">- high effect_outside_ci</text>
+  <text x="88" y="420" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="20" fill="#92400e">- medium multiple_comparisons_uncorrected</text>
+</svg>

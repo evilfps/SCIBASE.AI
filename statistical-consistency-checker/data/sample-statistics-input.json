@@ -1,0 +1,92 @@
+{
+  "generatedAt": "2026-05-16T16:35:00Z",
+  "manuscript": {
+    "id": "ms-neuroimmune-042",
+    "title": "Neuroimmune Marker Study",
+    "domain": "neuroscience"
+  },
+  "artifacts": [
+    {
+      "id": "data-raw-csf",
+      "type": "dataset",
+      "available": true,
+      "hash": "sha256:5c1c8b"
+    },
+    {
+      "id": "code-model-r",
+      "type": "analysis-script",
+      "available": false,
+      "hash": "sha256:missing"
+    },
+    {
+      "id": "code-summary-r",
+      "type": "analysis-script",
+      "available": true,
+      "hash": "sha256:af4d22"
+    }
+  ],
+  "analyses": [
+    {
+      "id": "primary-csf-marker",
+      "claim": "Marker levels were higher in responders.",
+      "test": "welch-t-test",
+      "pValue": 0.031,
+      "alpha": 0.05,
+      "reportedSignificant": true,
+      "effectSize": 0.82,
+      "confidenceInterval": [0.12, 0.65],
+      "direction": "positive",
+      "sampleSize": 28,
+      "groups": [
+        { "name": "responders", "n": 8 },
+        { "name": "non-responders", "n": 20 }
+      ],
+      "multipleComparisons": {
+        "tests": 6,
+        "correction": "none"
+      },
+      "units": [
+        {
+          "variable": "CSF marker",
+          "expected": "ng/mL",
+          "observed": "pg/mL"
+        }
+      ],
+      "primaryOutcome": true,
+      "preregistered": false,
+      "dataArtifactId": "data-raw-csf",
+      "codeArtifactId": "code-model-r"
+    },
+    {
+      "id": "secondary-cognition-score",
+      "claim": "Cognitive score change was not statistically significant.",
+      "test": "linear-model",
+      "pValue": 0.18,
+      "alpha": 0.05,
+      "reportedSignificant": false,
+      "effectSize": 0.09,
+      "confidenceInterval": [-0.11, 0.32],
+      "direction": "positive",
+      "sampleSize": 64,
+      "groups": [
+        { "name": "treatment", "n": 32 },
+        { "name": "control", "n": 32 }
+      ],
+      "multipleComparisons": {
+        "tests": 1,
+        "correction": "not reported"
+      },
+      "units": [
+        {
+          "variable": "score delta",
+          "expected": "points",
+          "observed": "points"
+        }
+      ],
+      "primaryOutcome": false,
+      "preregistered": true,
+      "dataArtifactId": "data-raw-csf",
+      "codeArtifactId": "code-summary-r"
+    }
+  ]
+}
